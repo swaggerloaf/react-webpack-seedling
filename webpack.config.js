@@ -1,7 +1,8 @@
-// webpack.config.js
-const path = require("path");
-const fs = require("fs");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const fs = require('fs');
+
+// Host
+const host = process.env.HOST || 'localhost';
 // App directory
 const appDirectory = fs.realpathSync(process.cwd());
 
@@ -9,20 +10,13 @@ const appDirectory = fs.realpathSync(process.cwd());
 const resolveAppPath = (relativePath) =>
   path.resolve(appDirectory, relativePath);
 
-// Host
-const host = process.env.HOST || "localhost";
-
-// Required for babel-preset-react-app
-process.env.NODE_ENV = "development";
-
 module.exports = {
-  entry: "./src/index.tsx",
-  devtool: "inline-source-map",
+  devtool: 'inline-source-map',
   // Environment mode
-  mode: "development",
+  mode: 'development',
   devServer: {
     // Serve index.html as the base
-    contentBase: resolveAppPath("public"),
+    contentBase: resolveAppPath('public'),
 
     // Enable compression
     compress: true,
@@ -35,43 +29,23 @@ module.exports = {
     port: 3000,
 
     // Public path is root of content base
-    publicPath: "/",
+    publicPath: '/'
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: "ts-loader",
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-      },
-      {
-        test: /\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: true,
-            },
-          },
-        ],
-      },
-    ],
+        use: ['babel-loader']
+      }
+    ]
   },
   resolve: {
-    extensions: [".tsx", ".ts", ".js"],
+    extensions: ['*', '.js', '.jsx']
   },
+  entry: path.resolve(__dirname, './src/index.jsx'),
   output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "dist"),
-  },
-  plugins: [
-    // Re-generate index.html with injected script tag.
-    // The injected script tag contains a src value of the
-    // filename output defined above.
-    new HtmlWebpackPlugin({
-      inject: true,
-      template: resolveAppPath("public/index.html"),
-    }),
-  ],
+    path: path.resolve(__dirname, './dist'),
+    filename: 'bundle.js'
+  }
 };

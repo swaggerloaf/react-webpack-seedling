@@ -1,8 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { BrowseBoards } from './BrowseBoards'
+// import { BrowseBoards } from './BrowseBoards.final'
+// import 'ProjectPlanner/styles/global-styles.scss'
+// import 'ProjectPlanner/Heading.scss'
+import './styles.scss'
 
-import App from "./App";
+function App() {
+  return <BrowseBoards />
+}
 
-const title = "React with Webpack and Babel";
-
-ReactDOM.render(<App title={title} />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById('root'))

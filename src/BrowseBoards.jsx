@@ -23,7 +23,7 @@ export const BrowseBoards = () => {
           <div className="spacing-small flex-1">
             <h2 className="heading size-2">{board.name}</h2>
           </div>
-          <button className="button button-outline">Remove</button>
+          <button className="btn btn-primary">Remove</button>
         </div>
         </div>
         })}

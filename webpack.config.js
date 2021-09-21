@@ -1,55 +1,49 @@
+const webpack = require('webpack');
 const path = require('path');
-const fs = require('fs');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-// Host
-const host = process.env.HOST || 'localhost';
-// App directory
-const appDirectory = fs.realpathSync(process.cwd());
-
-// Gets absolute path of file within app directory
-const resolveAppPath = (relativePath) =>
-  path.resolve(appDirectory, relativePath);
+process.env.NODE_ENV = 'development';
 
 module.exports = {
-  devtool: 'inline-source-map',
-  // Environment mode
   mode: 'development',
-  devServer: {
-    // Serve index.html as the base
-    contentBase: resolveAppPath('public'),
-
-    // Enable compression
-    compress: true,
-
-    // Enable hot reloading
-    hot: true,
-
-    host,
-
-    port: 3000,
-
-    // Public path is root of content base
-    publicPath: '/'
+  target: 'web',
+  devtool: 'cheap-module-source-map',
+  entry: './src/index',
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    publicPath: '/',
+    filename: 'bundle.js'
   },
+  devServer: {
+    stats: 'minimal',
+    overlay: true,
+    port: 3000,
+    historyApiFallback: true,
+    disableHostCheck: true,
+    headers: { 'Access-Control-Allow-Origin': '*' },
+    https: false
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      favicon: 'src/favicon.ico'
+    })
+  ],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: ['babel-loader', 'eslint-loader']
+      },
+      {
+        test: /(\.css)$/,
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
-  },
-  entry: path.resolve(__dirname, './src/index.jsx'),
-  output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'bundle.js'
   }
 };

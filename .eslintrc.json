@@ -1,6 +1,5 @@
 {
-  "extends": ["prettier"],
-  "plugins": ["prettier", "react"],
+  "plugins": ["react"],
   "parser": "babel-eslint",
   "parserOptions": {
     "ecmaVersion": 2018,

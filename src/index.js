@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-unused-vars
 import React from "react"
 import ReactDOM from "react-dom"
 import "./styles.scss"
@@ -19,7 +18,7 @@ class Board extends React.Component {
 
     return (
       <div>
-        <div className="status">{status}</div>
+        <div className="status text-primary">{status}</div>
         <div className="board-row">
           {this.renderSquare(0)}
           {this.renderSquare(1)}
@@ -58,8 +57,3 @@ class Game extends React.Component {
 
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(<Game />)
-
-// render(
-//   <div className="text-danger">Hi there!</div>,
-//   document.getElementById('root')
-// );

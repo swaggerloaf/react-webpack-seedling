@@ -1,6 +1,6 @@
 body {
-  font: 14px "Century Gothic", Futura, sans-serif;
-  margin: 20px;
+  font: 18px "Century Gothic", Futura, sans-serif;
+  margin: 120px;
 }
 
 ol, ul {
@@ -13,23 +13,19 @@ ol, ul {
   display: table;
 }
 
-.status {
-  margin-bottom: 10px;
-}
-
 .square {
-  background: #fff;
-  border: 1px solid #999;
+  background: rgb(243, 211, 211);
+  border: 3px solid #999;
   float: left;
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: 50px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 50px;
 }
 
 .square:focus {

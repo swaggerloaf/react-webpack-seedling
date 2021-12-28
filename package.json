@@ -32,7 +32,6 @@
     "css-loader": "6.5.1",
     "sass-loader": "^12.4.0",
     "cssnano": "5.0.6",
-    "enzyme": "3.11.0",
     "eslint": "7.30.0",
     "eslint-loader": "4.0.2",
     "eslint-plugin-import": "2.23.4",

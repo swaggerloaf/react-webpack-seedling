@@ -15,11 +15,8 @@ module.exports = {
     filename: "bundle.js",
   },
   devServer: {
-    stats: "minimal",
-    overlay: true,
     port: 3000,
     historyApiFallback: true,
-    disableHostCheck: true,
     headers: { "Access-Control-Allow-Origin": "*" },
     https: false,
   },
